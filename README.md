@@ -11,3 +11,7 @@
     - [ ] Finalize and Finish
       <br>
 - [ ] Unit Testing
+
+#### Other
+
+- [x] Added Postman JSON File
