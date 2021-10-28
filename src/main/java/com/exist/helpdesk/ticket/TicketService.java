@@ -5,7 +5,9 @@ import com.exist.helpdesk.employee.EmployeeRepository;
 import com.exist.helpdesk.utility.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +68,7 @@ public class TicketService {
         ticketRepository.deleteById(ticketID);
     }
 
-    public Ticket updateTicket(long ticketID, Ticket requestBodyTicket) {
+    public void updateTicket(long ticketID, Ticket requestBodyTicket) {
         utilityService.ticketExist(ticketID);
         Ticket ticket = ticketRepository.findById(ticketID)
                 .orElseThrow(()-> new IllegalStateException("Ticket with id "
@@ -74,7 +76,7 @@ public class TicketService {
         ticket.setStatus(requestBodyTicket.getStatus());
         ticket.setDescription(requestBodyTicket.getDescription());
         ticket.setSeverity(requestBodyTicket.getSeverity());
-        return ticketRepository.save(ticket);
+        ticketRepository.save(ticket);
     }
 
     public void removeWatcherFromTicket(long ticketId, long employeeId) {
@@ -85,4 +87,11 @@ public class TicketService {
         }
         ticketRepository.save(ticket);
     }
+
+    public List<Employee> getWatchers(Long ticketId) {
+        utilityService.ticketExist(ticketId);
+        Ticket ticket = ticketRepository.findById(ticketId).get();
+        return new ArrayList<>(ticket.getWatchers());
+    }
+
 }

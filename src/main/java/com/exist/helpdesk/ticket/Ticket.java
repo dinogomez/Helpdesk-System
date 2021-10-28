@@ -66,11 +66,7 @@ public class Ticket {
     }
 
     public void removeWatcher(Long employeeId){
-        for(Employee employee: this.watchers){
-            if(employee.getId() == employeeId){
-                this.watchers.remove(employee);
-            }
-        }
+        this.watchers.removeIf(employee -> employee.getId() == employeeId);
     }
 
     public void removeAllWatchers(){

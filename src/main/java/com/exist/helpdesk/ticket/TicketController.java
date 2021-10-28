@@ -1,10 +1,12 @@
 package com.exist.helpdesk.ticket;
 
+import com.exist.helpdesk.employee.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "api/tickets")
@@ -27,6 +29,12 @@ public class TicketController {
     @GetMapping("/{ticketId}")
     Optional<Ticket> getTicketById(@PathVariable("ticketId") Long ticketId){
         return ticketService.getTicketById(ticketId);
+    }
+
+    //GET ALL TICKET WATCHERS
+    @GetMapping("/{ticketId}/watchers")
+    List<Employee> getWatchers(@PathVariable("ticketId") Long ticketId){
+        return ticketService.getWatchers(ticketId);
     }
 
     //CREATE TICKET
@@ -61,7 +69,6 @@ public class TicketController {
                                  @PathVariable long employeeId){
         ticketService.removeWatcherFromTicket(ticketId, employeeId);
     }
-
 
     //UPDATE TICKET
     @PutMapping(path = "{ticketId}")

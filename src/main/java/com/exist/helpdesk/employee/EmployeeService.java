@@ -1,10 +1,12 @@
 package com.exist.helpdesk.employee;
 
+import com.exist.helpdesk.ticket.Ticket;
 import com.exist.helpdesk.utility.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +33,18 @@ public class EmployeeService {
     public Optional<Employee> getEmployeeById(Long employeeId) {
         utilityService.employeeExist(employeeId);
         return employeeRepository.findById(employeeId);
+    }
+
+    public List<Ticket> getTicketsAssigned(Long employeeId) {
+        utilityService.employeeExist(employeeId);
+        Employee employee = employeeRepository.findById(employeeId).get();
+        return new ArrayList<>(employee.getTicketsAssigned());
+    }
+
+    public List<Ticket> getTicketsWatched(Long employeeId) {
+        utilityService.employeeExist(employeeId);
+        Employee employee = employeeRepository.findById(employeeId).get();
+        return new ArrayList<>(employee.getTicketsWatched());
     }
 
     //CREATE EMPLOYEE SERVICE
@@ -65,4 +79,6 @@ public class EmployeeService {
         employee.setDepartment(requestBodyEmployee.getDepartment());
         return employeeRepository.save(employee);
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.exist.helpdesk.employee;
 
+import com.exist.helpdesk.ticket.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,18 @@ public class EmployeeController {
     @GetMapping("/{employeeId}")
     Optional<Employee> getEmployeeById(@PathVariable("employeeId") Long employeeId){
         return employeeService.getEmployeeById(employeeId);
+    }
+
+    //GET EMPLOYEE ASSIGNED TICKETS
+    @GetMapping("/{employeeId}/assignee")
+    List<Ticket> getTicketsAssigned(@PathVariable("employeeId") Long employeeId){
+        return employeeService.getTicketsAssigned(employeeId);
+    }
+
+    //GET EMPLOYEE WATCHED TICKETS
+    @GetMapping("/{employeeId}/watcher")
+    List<Ticket> getTicketsWatched(@PathVariable("employeeId") Long employeeId){
+        return employeeService.getTicketsWatched(employeeId);
     }
 
     //CREATE EMPLOYEE
