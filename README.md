@@ -1,7 +1,7 @@
 ### Web Help Desk
 ---
-Available Endpoints
-![[endpoints.png]]
+#### Available Endpoints
+![End Points](endpoints.png)
 
 #### Todo
 - [x] Security
