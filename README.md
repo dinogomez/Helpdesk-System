@@ -1,7 +1,7 @@
 ### Web Help Desk
 ---
-Available Endpoints
-![[endpoints.png]]
+#### Available Endpoints
+![End Points](endpoints.png)
 
 #### Todo
 - [x] Security
@@ -11,3 +11,7 @@ Available Endpoints
     - [ ] Finalize and Finish
       <br>
 - [ ] Unit Testing
+
+#### Other
+
+- [x] Added Postman JSON File
