@@ -1,9 +1,9 @@
 package com.exist.helpdesk.utility;
 
-import com.exist.helpdesk.employee.Employee;
-import com.exist.helpdesk.employee.EmployeeRepository;
-import com.exist.helpdesk.ticket.Ticket;
-import com.exist.helpdesk.ticket.TicketRepository;
+import com.exist.helpdesk.model.Employee;
+import com.exist.helpdesk.repository.EmployeeRepository;
+import com.exist.helpdesk.model.Ticket;
+import com.exist.helpdesk.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UtilityService {
     private final EmployeeRepository employeeRepository;
     private final TicketRepository ticketRepository;
+
 
     @Autowired
     public UtilityService(EmployeeRepository employeeRepository, TicketRepository ticketRepository) {
